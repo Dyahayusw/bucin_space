@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spesial Buat Kamu Sayang</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            bg: '#FFF8F9',
+                            card: '#FFFFFF',
+                            pink: '#FF85A2',
+                            pinkLight: '#FFD6E0',
+                            pinkDark: '#E05777',
+                            peach: '#FFB5A7',
+                            cream: '#FCD5CE',
+                            mint: '#D8F3DC',
+                            lavender: '#E2ECE9',
+                            yellow: '#FFF1A8',
+                            text: '#5C3D46',
+                            muted: '#9D7B84'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF5F7;
+            background-image: 
+                radial-gradient(at 10% 10%, #FFE3EC 0px, transparent 50%),
+                radial-gradient(at 90% 20%, #FFF0D4 0px, transparent 50%),
+                radial-gradient(at 20% 80%, #E8F8F5 0px, transparent 50%),
+                radial-gradient(at 80% 90%, #FFD6E0 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #5C3D46;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1, h2, h3, h4, .font-cute {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Bouncy Transitions */
+        .bouncy {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bouncy:active {
+            transform: scale(0.92);
+        }
+
+        /* Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: floatSlow 3.5s ease-in-out infinite;
+        }
+
+        /* Jar Shake Animation */
+        @keyframes jarShake {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            20% { transform: rotate(-10deg) scale(1.06); }
+            40% { transform: rotate(10deg) scale(1.08); }
+            60% { transform: rotate(-8deg) scale(1.06); }
+            80% { transform: rotate(8deg) scale(1.04); }
+        }
+        .shake-jar {
+            animation: jarShake 0.55s ease-in-out;
+        }
+
+        /* Infinite Overload Shake */
+        @keyframes overloadShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-3px, 2px) rotate(-1.5deg); }
+            50% { transform: translate(3px, -2px) rotate(1.5deg); }
+            75% { transform: translate(-2px, -2px) rotate(-1deg); }
+        }
+        .overload-active {
+            animation: overloadShake 0.25s infinite;
+        }
+
+        /* Pop-in Modal Animation */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.75) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-pop {
+            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Custom Range Slider */
+        input[type=range].cute-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 22px;
+            background: #FFE5EC;
+            border-radius: 999px;
+            outline: none;
+            border: 3px solid #FF85A2;
+            box-shadow: inset 0 2px 5px rgba(255, 133, 162, 0.25);
+        }
+        input[type=range].cute-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #FF5D8F;
+            cursor: pointer;
+            border: 4px solid #FFF;
+            box-shadow: 0 4px 10px rgba(224, 87, 119, 0.45);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        input[type=range].cute-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.18);
+        }
+        input[type=range].cute-slider::-moz-range-thumb {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #FF5D8F;
+            cursor: pointer;
+            border: 4px solid #FFF;
+            box-shadow: 0 4px 10px rgba(224, 87, 119, 0.45);
+        }
+
+        /* Perforated Coupon Ticket Edge */
+        .coupon-card {
+            position: relative;
+            background: #FFFFFF;
+            border: 2.5px dashed #FFB3C6;
+        }
+        .coupon-card::before,
+        .coupon-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 22px;
+            height: 22px;
+            background-color: #FFF5F7;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        .coupon-card::before {
+            left: -13px;
+            border-right: 2.5px dashed #FFB3C6;
+        }
+        .coupon-card::after {
+            right: -13px;
+            border-left: 2.5px dashed #FFB3C6;
+        }
+
+        /* Background Floating Hearts */
+        .bg-heart {
+            position: fixed;
+            bottom: -50px;
+            pointer-events: none;
+            z-index: 0;
+            animation: riseUp linear forwards;
+        }
+        @keyframes riseUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.55;
+            }
+            85% {
+                opacity: 0.55;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Soft Card Shadow */
+        .kawaii-shadow {
+            box-shadow: 0 10px 25px -5px rgba(255, 133, 162, 0.18), 0 6px 0px #FFD6E0;
+        }
+        .kawaii-btn-shadow {
+            box-shadow: 0 5px 0px #E05777;
+        }
+        .kawaii-btn-shadow:active {
+            box-shadow: 0 1px 0px #E05777;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-pastel-pink selection:text-white">
+
+    <!-- Background Floating Hearts Container -->
+    <div id="bg-hearts-container" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- Heart Confetti Canvas Overlay -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+    <!-- Top Floating Navbar Controls -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-4 py-3 flex justify-between items-center max-w-4xl mx-auto">
+        <!-- App Pill Badge -->
+        <div class="bg-white/90 backdrop-blur-md border-2 border-pastel-pinkLight px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-sm">
+            <span class="font-cute font-semibold text-sm text-pastel-pinkDark">Ruang Bucin</span>
+        </div>
+
+        <!-- Action Buttons: Personalize & Audio Mute -->
+        <div class="flex items-center gap-2">
+            <button id="btn-open-settings" onclick="openSettingsModal()" class="bouncy bg-white/90 hover:bg-pastel-pinkLight/50 backdrop-blur-md border-2 border-pastel-pinkLight px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-pastel-text shadow-sm" title="Kustomisasi Nama">
+                <span>Ubah Nama</span>
+            </button>
+            <button id="btn-sound-toggle" onclick="toggleSound()" class="bouncy bg-white/90 hover:bg-pastel-pinkLight/50 backdrop-blur-md border-2 border-pastel-pinkLight w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold shadow-sm" title="Suara Efek">
+                <span id="sound-icon">Suara</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         1. LAYAR PEMBUKA / PERTANYAAN ANTI-TOLAK
+         ========================================== -->
+    <section id="opening-screen" class="relative z-30 min-h-screen flex flex-col items-center justify-center px-4 py-16 transition-all duration-500">
+        <div class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2.5rem] p-6 sm:p-10 max-w-md w-full text-center kawaii-shadow relative overflow-visible">
+            
+            <!-- Cute Ribbon Tag -->
+            <div class="inline-block bg-pastel-pinkLight text-pastel-pinkDark font-cute font-semibold text-xs sm:text-sm px-4 py-1 rounded-full mb-3">
+                Pesan Spesial Untuk <span class="partner-name-display font-bold underline decoration-wavy">Sayangku</span>
+            </div>
+
+            <!-- Kawaii SVG Bear Illustration -->
+            <div class="w-44 h-44 mx-auto my-2 relative animate-float">
+                <svg id="mascot-svg" viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                    <!-- Ears -->
+                    <circle cx="55" cy="58" r="24" fill="#FFF" stroke="#5C3D46" stroke-width="5"/>
+                    <circle cx="55" cy="58" r="13" fill="#FFD6E0"/>
+                    <circle cx="145" cy="58" r="24" fill="#FFF" stroke="#5C3D46" stroke-width="5"/>
+                    <circle cx="145" cy="58" r="13" fill="#FFD6E0"/>
+
+                    <!-- Body -->
+                    <ellipse cx="100" cy="152" rx="46" ry="36" fill="#FFF" stroke="#5C3D46" stroke-width="5"/>
+                    
+                    <!-- Head -->
+                    <rect x="42" y="48" width="116" height="95" rx="46" fill="#FFF" stroke="#5C3D46" stroke-width="5"/>
+
+                    <!-- Cheeks (Blush) -->
+                    <ellipse cx="64" cy="104" rx="11" ry="6.5" fill="#FF85A2" opacity="0.65"/>
+                    <ellipse cx="136" cy="104" rx="11" ry="6.5" fill="#FF85A2" opacity="0.65"/>
+
+                    <!-- Eyes Group (Normal) -->
+                    <g id="mascot-eyes-normal">
+                        <circle cx="74" cy="92" r="7.5" fill="#5C3D46"/>
+                        <circle cx="71.5" cy="89.5" r="2.8" fill="#FFF"/>
+                        <circle cx="76.5" cy="94" r="1.4" fill="#FFF"/>
+
+                        <circle cx="126" cy="92" r="7.5" fill="#5C3D46"/>
+                        <circle cx="123.5" cy="89.5" r="2.8" fill="#FFF"/>
+                        <circle cx="128.5" cy="94" r="1.4" fill="#FFF"/>
+                    </g>
+
+                    <!-- Eyes Group (Sad when No hovered) -->
+                    <g id="mascot-eyes-sad" class="hidden">
+                        <path d="M62 80 Q74 86 82 82" fill="none" stroke="#5C3D46" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M138 80 Q126 86 118 82" fill="none" stroke="#5C3D46" stroke-width="3.5" stroke-linecap="round"/>
+                        <circle cx="74" cy="93" r="7.5" fill="#5C3D46"/>
+                        <circle cx="72" cy="90" r="3" fill="#FFF"/>
+                        <path d="M68 98 Q66 112 72 114 Q77 112 75 98 Z" fill="#7BDFF2"/>
+
+                        <circle cx="126" cy="93" r="7.5" fill="#5C3D46"/>
+                        <circle cx="124" cy="90" r="3" fill="#FFF"/>
+                        <path d="M125 98 Q123 112 128 114 Q134 112 132 98 Z" fill="#7BDFF2"/>
+                    </g>
+
+                    <!-- Snout & Mouth -->
+                    <ellipse cx="100" cy="103" rx="14" ry="10" fill="#FFF0F3"/>
+                    <ellipse cx="100" cy="99" rx="5" ry="3.8" fill="#5C3D46"/>
+                    <path id="mascot-mouth-happy" d="M93 105 Q100 112 107 105" fill="none" stroke="#5C3D46" stroke-width="3.5" stroke-linecap="round"/>
+                    <path id="mascot-mouth-sad" class="hidden" d="M93 109 Q100 102 107 109" fill="none" stroke="#5C3D46" stroke-width="3.5" stroke-linecap="round"/>
+
+                    <!-- Big Heart Held in Paws -->
+                    <path d="M100 135 C85 115, 55 128, 72 152 C86 168, 100 177, 100 177 C100 177, 114 168, 128 152 C145 128, 115 115, 100 135 Z" fill="#FF5D8F" stroke="#5C3D46" stroke-width="4.5" stroke-linejoin="round"/>
+                    
+                    <circle cx="72" cy="146" r="11" fill="#FFF" stroke="#5C3D46" stroke-width="4.5"/>
+                    <circle cx="128" cy="146" r="11" fill="#FFF" stroke="#5C3D46" stroke-width="4.5"/>
+                </svg>
+            </div>
+
+            <!-- Main Question -->
+            <h1 class="font-cute text-2xl sm:text-3xl font-bold text-pastel-text leading-snug mb-2">
+                Halo <span class="partner-name-display text-pastel-pinkDark">Sayang</span>!<br>
+                Kamu sayang sama <span class="creator-name-display text-pastel-pinkDark">Aku</span> kan?
+            </h1>
+
+            <!-- Dynamic Reaction Subtitle -->
+            <p id="opening-reaction-text" class="text-sm sm:text-base font-medium text-pastel-muted min-h-[2.5rem] flex items-center justify-center px-2 mb-6 transition-all">
+                Jawab yang jujur dari hati ya
+            </p>
+
+            <!-- Buttons Area -->
+            <div id="opening-buttons-wrapper" class="flex flex-wrap items-center justify-center gap-4 min-h-[70px] relative">
+                <button id="btn-yes" onclick="acceptLove()" class="bouncy bg-pastel-pink hover:bg-pastel-pinkDark text-white font-cute font-bold text-lg sm:text-xl px-7 py-3.5 rounded-2xl kawaii-btn-shadow flex items-center gap-2 z-20">
+                    <span>Sayang Banget</span>
+                </button>
+
+                <button id="btn-no" class="bouncy bg-gray-100 hover:bg-gray-200 border-2 border-gray-300 text-gray-600 font-cute font-semibold text-base px-5 py-3 rounded-2xl shadow-sm z-20">
+                    Enggak
+                </button>
+            </div>
+
+            <!-- Dodge Counter Info -->
+            <div id="dodge-counter-badge" class="hidden mt-4 text-xs font-semibold text-pastel-pinkDark bg-pastel-pinkLight/40 py-1 px-3 rounded-full inline-block">
+                Percobaan kabur: <span id="dodge-count">0</span>x
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         2. DASHBOARD UTAMA BUCIN INTERAKTIF
+         ========================================== -->
+    <main id="main-dashboard" class="hidden relative z-10 max-w-4xl mx-auto px-4 pt-20 pb-24 space-y-8">
+
+        <!-- HERO WELCOME BANNER -->
+        <div class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2rem] p-6 sm:p-8 text-center kawaii-shadow relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-pastel-pinkLight/40 rounded-full pointer-events-none"></div>
+            <div class="absolute -bottom-8 -left-8 w-28 h-28 bg-pastel-yellow/40 rounded-full pointer-events-none"></div>
+
+            <div class="inline-flex items-center gap-1.5 bg-pastel-mint text-emerald-700 font-cute font-semibold text-xs sm:text-sm px-3.5 py-1 rounded-full mb-3">
+                Resmi Bucin Terverifikasi
+            </div>
+
+            <h2 class="font-cute text-2xl sm:text-4xl font-bold text-pastel-text mb-2">
+                Halo, <span class="partner-name-display text-pastel-pinkDark">Sayangku</span>!
+            </h2>
+            <p class="text-sm sm:text-base text-pastel-muted max-w-xl mx-auto">
+                Halaman khusus ini dibuat oleh <span class="creator-name-display font-bold text-pastel-pinkDark">Aku</span> cuma buat bikin kamu senyum hari ini.
+            </p>
+
+            <!-- Quick Navigation Pills -->
+            <div class="flex flex-wrap justify-center gap-2 mt-5">
+                <a href="#section-lovemeter" onclick="playPopSound()" class="bouncy bg-pastel-pinkLight/60 hover:bg-pastel-pink hover:text-white text-pastel-pinkDark font-cute font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full">
+                    Love Meter
+                </a>
+                <a href="#section-jar" onclick="playPopSound()" class="bouncy bg-pastel-pinkLight/60 hover:bg-pastel-pink hover:text-white text-pastel-pinkDark font-cute font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full">
+                    Toples Cinta
+                </a>
+                <a href="#section-coupons" onclick="playPopSound()" class="bouncy bg-pastel-pinkLight/60 hover:bg-pastel-pink hover:text-white text-pastel-pinkDark font-cute font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full">
+                    Kupon Bucin
+                </a>
+                <a href="#section-mood" onclick="playPopSound()" class="bouncy bg-pastel-pinkLight/60 hover:bg-pastel-pink hover:text-white text-pastel-pinkDark font-cute font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full">
+                    Mood Check
+                </a>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             FITUR 1: LOVE METER
+             ========================================== -->
+        <section id="section-lovemeter" class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2rem] p-6 sm:p-8 kawaii-shadow transition-all">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div>
+                        <h3 class="font-cute text-xl sm:text-2xl font-bold text-pastel-text">Love Meter Hari Ini</h3>
+                        <p class="text-xs sm:text-sm text-pastel-muted">Geser slider untuk mengukur kadar sayang hari ini</p>
+                    </div>
+                </div>
+                <span id="love-meter-badge" class="bg-pastel-pink text-white font-cute font-bold text-lg sm:text-2xl px-4 py-1.5 rounded-2xl shadow-sm transition-all">
+                    50%
+                </span>
+            </div>
+
+            <!-- Interactive Slider -->
+            <div class="my-6 px-1">
+                <input id="love-slider" type="range" min="0" max="115" value="50" class="cute-slider" oninput="handleLoveSlider(this.value)">
+                <div class="flex justify-between text-xs font-bold text-pastel-muted mt-2 px-1">
+                    <span>0% (Kurang)</span>
+                    <span>50% (Cukup)</span>
+                    <span>100% (Maksimal)</span>
+                    <span class="text-pastel-pinkDark">Tembus Batas</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Reaction Box -->
+            <div id="love-meter-card" class="bg-pastel-bg border-2 border-pastel-pinkLight rounded-2xl p-4 sm:p-5 text-center transition-all">
+                <p id="love-meter-message" class="font-cute font-semibold text-base sm:text-lg text-pastel-text">
+                    "Sayang 50%? Ayo dinaikin lagi kadarnya."
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             FITUR 2: TOPLES SURAT CINTA
+             ========================================== -->
+        <section id="section-jar" class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2rem] p-6 sm:p-8 kawaii-shadow">
+            <div class="text-center max-w-lg mx-auto mb-6">
+                <span class="inline-block bg-pastel-yellow text-amber-800 font-cute font-semibold text-xs px-3 py-1 rounded-full mb-2">
+                    Klik Toplesnya
+                </span>
+                <h3 class="font-cute text-xl sm:text-2xl font-bold text-pastel-text">Toples Alasan Sayang</h3>
+                <p class="text-xs sm:text-sm text-pastel-muted mt-1">
+                    Setiap kali kangen atau butuh semangat, ambil gulungan surat cinta acak dari <span class="creator-name-display font-bold text-pastel-pinkDark">Aku</span>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                <!-- Interactive Kawaii Glass Jar SVG -->
+                <div class="md:col-span-5 flex flex-col items-center">
+                    <div id="love-jar-clickable" onclick="drawLoveNote()" class="cursor-pointer group relative w-48 h-56 flex items-center justify-center">
+                        <div class="absolute inset-4 bg-pastel-pinkLight/50 rounded-full blur-xl group-hover:bg-pastel-pink/40 transition-all"></div>
+                        
+                        <svg id="jar-svg" viewBox="0 0 180 220" class="w-full h-full relative z-10 drop-shadow-md group-hover:scale-105 transition-transform">
+                            <!-- Cork Lid -->
+                            <rect x="52" y="14" width="76" height="20" rx="8" fill="#DDA15E" stroke="#5C3D46" stroke-width="4"/>
+                            <!-- Jar Neck -->
+                            <rect x="46" y="30" width="88" height="14" rx="6" fill="#E0FBFC" stroke="#5C3D46" stroke-width="4"/>
+                            <!-- Ribbon around neck -->
+                            <rect x="44" y="38" width="92" height="10" rx="5" fill="#FF5D8F" stroke="#5C3D46" stroke-width="3"/>
+                            
+                            <!-- Glass Jar Body -->
+                            <rect x="28" y="46" width="124" height="154" rx="34" fill="#FFFFFF" fill-opacity="0.88" stroke="#5C3D46" stroke-width="4.5"/>
+                            <path d="M42 66 L42 165" stroke="#FFE5EC" stroke-width="7" stroke-linecap="round"/>
+
+                            <!-- Colorful Folded Notes & Hearts Inside Jar -->
+                            <g transform="rotate(-12 65 168)">
+                                <rect x="45" y="155" width="40" height="24" rx="6" fill="#FFD6E0" stroke="#5C3D46" stroke-width="3"/>
+                            </g>
+                            <g transform="rotate(15 115 165)">
+                                <rect x="92" y="152" width="42" height="24" rx="6" fill="#FFF1A8" stroke="#5C3D46" stroke-width="3"/>
+                            </g>
+                            <g transform="rotate(-6 88 142)">
+                                <rect x="68" y="130" width="42" height="24" rx="6" fill="#D8F3DC" stroke="#5C3D46" stroke-width="3"/>
+                            </g>
+                            <g transform="rotate(20 62 128)">
+                                <rect x="42" y="116" width="38" height="22" rx="6" fill="#FFCFD2" stroke="#5C3D46" stroke-width="3"/>
+                            </g>
+                            <g transform="rotate(-18 118 130)">
+                                <rect x="96" y="118" width="40" height="22" rx="6" fill="#E2ECE9" stroke="#5C3D46" stroke-width="3"/>
+                            </g>
+
+                            <!-- Cute Face on the Jar -->
+                            <circle cx="72" cy="92" r="4.5" fill="#5C3D46"/>
+                            <circle cx="108" cy="92" r="4.5" fill="#5C3D46"/>
+                            <ellipse cx="62" cy="98" rx="6" ry="3.5" fill="#FF85A2" opacity="0.7"/>
+                            <ellipse cx="118" cy="98" rx="6" ry="3.5" fill="#FF85A2" opacity="0.7"/>
+                            <path d="M84 95 Q90 101 96 95" fill="none" stroke="#5C3D46" stroke-width="3" stroke-linecap="round"/>
+
+                            <path d="M90 68 C84 60, 72 64, 79 74 C86 81, 90 85, 90 85 C90 85, 94 81, 101 74 C108 64, 96 60, 90 68 Z" fill="#FF5D8F"/>
+                        </svg>
+                    </div>
+                    <button onclick="drawLoveNote()" class="bouncy mt-2 bg-pastel-pink hover:bg-pastel-pinkDark text-white font-cute font-semibold text-sm px-5 py-2.5 rounded-full kawaii-btn-shadow flex items-center gap-1.5">
+                        Ambil Gulungan Surat
+                    </button>
+                </div>
+
+                <!-- Opened Note Display & Add Custom Note -->
+                <div class="md:col-span-7 flex flex-col justify-between space-y-4">
+                    <div id="note-card-display" class="bg-[#FFFDF9] border-3 border-pastel-peach rounded-3xl p-6 relative shadow-md min-h-[170px] flex flex-col justify-between">
+                        <div class="flex items-center justify-between border-b border-dashed border-pastel-pinkLight pb-2 mb-3">
+                            <span id="note-number-badge" class="font-cute font-bold text-xs text-pastel-pinkDark bg-pastel-pinkLight/50 px-3 py-1 rounded-full">
+                                Surat Cinta #1
+                            </span>
+                            <span class="text-xs text-pastel-muted font-medium">Dari: <span class="creator-name-display font-bold">Aku</span></span>
+                        </div>
+
+                        <p id="note-text-content" class="font-cute text-lg sm:text-xl text-pastel-text leading-relaxed my-auto py-2 text-center">
+                            "Klik toples di samping untuk membaca pesan pertamamu hari ini."
+                        </p>
+
+                        <div class="flex justify-between items-center pt-2 border-t border-dashed border-pastel-pinkLight text-xs text-pastel-muted">
+                            <span id="total-notes-counter">Tersedia 14 gulungan surat</span>
+                            <button onclick="drawLoveNote()" class="text-pastel-pinkDark font-bold hover:underline">Acak Lagi</button>
+                        </div>
+                    </div>
+
+                    <!-- Add Custom Note Form -->
+                    <div class="bg-pastel-bg border-2 border-pastel-pinkLight rounded-2xl p-3.5">
+                        <label class="block font-cute font-semibold text-xs text-pastel-text mb-2">
+                            Tambah Pesan Manis Baru ke Toples:
+                        </label>
+                        <div class="flex gap-2">
+                            <input id="custom-note-input" type="text" placeholder="Tulis alasan sayang atau gombalan..." maxlength="140" class="w-full bg-white border-2 border-pastel-pinkLight focus:border-pastel-pink rounded-xl px-3.5 py-2 text-xs sm:text-sm outline-none text-pastel-text">
+                            <button onclick="addCustomLoveNote()" class="bouncy bg-pastel-pink hover:bg-pastel-pinkDark text-white font-cute font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl shrink-0 shadow-sm">
+                                Masukkan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             FITUR 3: KUPON BUCIN
+             ========================================== -->
+        <section id="section-coupons" class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2rem] p-6 sm:p-8 kawaii-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                <div>
+                    <span class="inline-block bg-pastel-mint text-emerald-800 font-cute font-semibold text-xs px-3 py-1 rounded-full mb-1">
+                        Berlaku Selamanya
+                    </span>
+                    <h3 class="font-cute text-xl sm:text-2xl font-bold text-pastel-text">Voucher & Kupon Bucin Spesial</h3>
+                    <p class="text-xs sm:text-sm text-pastel-muted">
+                        Pilih kupon yang diinginkan, klik <b>Klaim Kupon</b>, lalu screenshot tiketnya dan kirim ke WhatsApp.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grid of Coupons -->
+            <div id="coupons-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ==========================================
+             FITUR 4: MOOD CHECK
+             ========================================== -->
+        <section id="section-mood" class="bg-white/95 backdrop-blur-md border-4 border-pastel-pinkLight rounded-[2rem] p-6 sm:p-8 kawaii-shadow">
+            <div class="text-center max-w-lg mx-auto mb-6">
+                <span class="inline-block bg-pastel-pinkLight text-pastel-pinkDark font-cute font-semibold text-xs px-3 py-1 rounded-full mb-2">
+                    Dokter Cinta Siaga 24 Jam
+                </span>
+                <h3 class="font-cute text-xl sm:text-2xl font-bold text-pastel-text">Mood Check Kamu Hari Ini</h3>
+                <p class="text-xs sm:text-sm text-pastel-muted mt-1">
+                    Sekarang <span class="partner-name-display font-bold text-pastel-pinkDark">Sayang</span> sedang merasakan apa? Pilih satu untuk mendapat resep penyembuh instan.
+                </p>
+            </div>
+
+            <!-- Mood Selector Buttons -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                <button onclick="selectMood('kangen')" id="mood-btn-kangen" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Lagi Kangen</span>
+                    <span class="text-[11px] text-pastel-muted">Pengen ketemu</span>
+                </button>
+
+                <button onclick="selectMood('lapar')" id="mood-btn-lapar" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Lagi Lapar</span>
+                    <span class="text-[11px] text-pastel-muted">Pengen jajan enak</span>
+                </button>
+
+                <button onclick="selectMood('peluk')" id="mood-btn-peluk" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Butuh Peluk</span>
+                    <span class="text-[11px] text-pastel-muted">Pengen dimanja</span>
+                </button>
+
+                <button onclick="selectMood('badmood')" id="mood-btn-badmood" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Lagi Badmood</span>
+                    <span class="text-[11px] text-pastel-muted">Jangan diganggu dulu</span>
+                </button>
+
+                <button onclick="selectMood('capek')" id="mood-btn-capek" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Capek Banget</span>
+                    <span class="text-[11px] text-pastel-muted">Habis beraktivitas</span>
+                </button>
+
+                <button onclick="selectMood('senang')" id="mood-btn-senang" class="mood-btn bouncy bg-pastel-bg hover:bg-pastel-pinkLight/50 border-2 border-pastel-pinkLight rounded-2xl p-3.5 flex flex-col items-center text-center gap-1 transition-all">
+                    <span class="font-cute font-bold text-sm text-pastel-text">Full Senyum</span>
+                    <span class="text-[11px] text-pastel-muted">Hari ini bahagia</span>
+                </button>
+            </div>
+
+            <!-- Prescription Output Card -->
+            <div id="mood-prescription-box" class="hidden bg-gradient-to-br from-[#FFF9FB] to-[#FFF0F5] border-3 border-pastel-pink rounded-3xl p-5 sm:p-6 relative shadow-inner">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-dashed border-pastel-pinkLight pb-3 mb-4">
+                    <div>
+                        <h4 class="font-cute font-bold text-base sm:text-lg text-pastel-pinkDark">Resep Penyembuh Instan</h4>
+                        <p class="text-xs text-pastel-muted">Ditulis khusus oleh Dokter Cinta: <span class="creator-name-display font-bold">Aku</span></p>
+                    </div>
+                    <span id="mood-diagnosis-tag" class="bg-pastel-pink text-white font-cute font-semibold text-xs px-3 py-1 rounded-full self-start sm:self-center">
+                        Diagnosis: Kangen Berat
+                    </span>
+                </div>
+
+                <div class="space-y-3 text-sm sm:text-base">
+                    <p id="mood-resep-text" class="font-medium text-pastel-text leading-relaxed"></p>
+                    <div class="bg-white/90 border border-pastel-pinkLight rounded-2xl p-3.5 flex items-start gap-2.5">
+                        <div>
+                            <span class="font-cute font-bold text-xs text-pastel-pinkDark uppercase tracking-wider block">Tindakan Darurat Sekarang:</span>
+                            <p id="mood-action-text" class="text-xs sm:text-sm text-pastel-text font-semibold mt-0.5"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-4 pb-8 text-xs sm:text-sm text-pastel-muted space-y-2">
+            <p class="font-cute font-semibold text-pastel-text">
+                Dibuat dengan sepenuh hati oleh <span class="creator-name-display text-pastel-pinkDark underline">Aku</span> untuk <span class="partner-name-display text-pastel-pinkDark underline">Sayangku</span>
+            </p>
+            <div class="flex justify-center gap-3 pt-1">
+                <button onclick="triggerHeartConfetti(); playSuccessSound();" class="bouncy bg-white border border-pastel-pinkLight px-3.5 py-1.5 rounded-full text-xs font-semibold text-pastel-pinkDark shadow-sm">
+                    Ledakkan Hati Lagi
+                </button>
+                <button onclick="openSettingsModal()" class="bouncy bg-white border border-pastel-pinkLight px-3.5 py-1.5 rounded-full text-xs font-semibold text-pastel-text shadow-sm">
+                    Bagikan Link Custom Nama
+                </button>
+            </div>
+        </footer>
+
+    </main>
+
+
+    <!-- ==========================================
+         MODAL 1: TIKET KUPON BUCIN
+         ========================================== -->
+    <div id="coupon-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+        <div class="bg-white border-4 border-pastel-pink rounded-[2rem] max-w-sm w-full p-6 text-center kawaii-shadow animate-pop relative overflow-hidden">
+            <div class="bg-pastel-pinkLight text-pastel-pinkDark font-cute font-bold text-xs px-3 py-1 rounded-full inline-block mb-3">
+                TIKET KUPON BUCIN RESMI
+            </div>
+
+            <h3 id="modal-coupon-title" class="font-cute font-bold text-xl text-pastel-text mb-1 mt-2">
+                Kupon Jajan Es Krim & Seblak
+            </h3>
+            <p id="modal-coupon-desc" class="text-xs sm:text-sm text-pastel-muted mb-4">
+                Bebas pilih level pedas dan topping sesuka hati tanpa protes.
+            </p>
+
+            <!-- Ticket Details Box -->
+            <div class="bg-pastel-bg border-2 border-dashed border-pastel-pink rounded-2xl p-3.5 text-left text-xs space-y-1.5 mb-4">
+                <div class="flex justify-between">
+                    <span class="text-pastel-muted">Pemilik Kupon:</span>
+                    <span class="partner-name-display font-bold text-pastel-text">Sayangku</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-pastel-muted">Penerbit Wajib Bayar:</span>
+                    <span class="creator-name-display font-bold text-pastel-pinkDark">Aku</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-pastel-muted">Waktu Klaim:</span>
+                    <span id="modal-coupon-date" class="font-semibold text-pastel-text">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-pastel-muted">Kode Tiket:</span>
+                    <span id="modal-coupon-code" class="font-mono font-bold text-pastel-pinkDark">BCN-999</span>
+                </div>
+            </div>
+
+            <p class="text-[11px] font-semibold text-pastel-pinkDark bg-pastel-pinkLight/40 rounded-xl py-2 px-3 mb-4">
+                <b>Screenshot layar ini sekarang</b> lalu kirimkan ke WhatsApp pasanganmu.
+            </p>
+
+            <div class="flex gap-2">
+                <button onclick="copyCouponText()" class="bouncy flex-1 bg-pastel-pinkLight hover:bg-pastel-pink/30 text-pastel-pinkDark font-cute font-bold text-xs sm:text-sm py-3 rounded-xl">
+                    Salin Teks WA
+                </button>
+                <button onclick="closeCouponModal()" class="bouncy flex-1 bg-pastel-pink hover:bg-pastel-pinkDark text-white font-cute font-bold text-xs sm:text-sm py-3 rounded-xl kawaii-btn-shadow">
+                    Siap Sayang
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         MODAL 2: PENGATURAN CUSTOM NAMA
+         ========================================== -->
+    <div id="settings-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+        <div class="bg-white border-4 border-pastel-pinkLight rounded-[2rem] max-w-md w-full p-6 kawaii-shadow animate-pop relative">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-cute font-bold text-xl text-pastel-text">
+                    Personalisasi Nama Pasangan
+                </h3>
+                <button onclick="closeSettingsModal()" class="w-8 h-8 rounded-full bg-pastel-bg text-pastel-muted hover:text-pastel-text font-bold">✕</button>
+            </div>
+
+            <p class="text-xs sm:text-sm text-pastel-muted mb-4">
+                Ganti nama panggilan pasanganmu dan namamu di bawah ini. Link URL otomatis menyimpan nama kalian agar siap dibagikan.
+            </p>
+
+            <div class="space-y-3.5 mb-5">
+                <div>
+                    <label class="block font-cute font-semibold text-xs text-pastel-text mb-1">
+                        Nama Panggilan Pasangan / Crush Kamu:
+                    </label>
+                    <input id="input-partner-name" type="text" placeholder="Contoh: Ayang Bubu / Dinda" maxlength="25" class="w-full bg-pastel-bg border-2 border-pastel-pinkLight focus:border-pastel-pink rounded-xl px-3.5 py-2.5 text-sm outline-none font-semibold text-pastel-text">
+                </div>
+
+                <div>
+                    <label class="block font-cute font-semibold text-xs text-pastel-text mb-1">
+                        Nama Panggilan Kamu (Pembuat):
+                    </label>
+                    <input id="input-creator-name" type="text" placeholder="Contoh: Mas Pacar / Rizky" maxlength="25" class="w-full bg-pastel-bg border-2 border-pastel-pinkLight focus:border-pastel-pink rounded-xl px-3.5 py-2.5 text-sm outline-none font-semibold text-pastel-text">
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2">
+                <button onclick="saveCustomNames(false)" class="bouncy flex-1 bg-pastel-pink hover:bg-pastel-pinkDark text-white font-cute font-bold text-sm py-3 rounded-xl kawaii-btn-shadow">
+                    Simpan Perubahan
+                </button>
+                <button onclick="saveCustomNames(true)" class="bouncy flex-1 bg-pastel-mint hover:bg-emerald-200 text-emerald-900 font-cute font-bold text-sm py-3 rounded-xl border-2 border-emerald-300">
+                    Simpan & Salin Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification -->
+    <div id="cute-toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform translate-y-4">
+        <div class="bg-pastel-text text-white font-cute font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2">
+            <span id="cute-toast-message">Berhasil disimpan</span>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC & WEB AUDIO SYNTHESIZER
+         ========================================== -->
+    <script>
+        let partnerName = "Sayangku";
+        let creatorName = "Aku";
+        let soundEnabled = true;
+        let dodgeCount = 0;
+        let yesScale = 1;
+        let currentClaimedCoupon = null;
+
+        const noReactions = [
+            "Eits gak kena! Tombolnya licin",
+            "Kok tega banget mau pencet Enggak?",
+            "Yakin gak sayang? Coba pikir-pikir lagi",
+            "Tombol Enggak lagi rusak, pencet sebelahnya saja",
+            "Aku sedih nih kalau dipencet Enggak",
+            "Gak boleh nolak, harus pilih Sayang Banget",
+            "Masih dikejar terus tombolnya, nyerah saja ya",
+            "Lihat tuh tombol Sayang Banget makin besar"
+        ];
+
+        const loveNotesList = [
+            "Aku sayang kamu karena senyum kamu itu langsung bikin energiku penuh 100% lagi.",
+            "Dari miliaran manusia di bumi, cuma kamu yang berhasil bikin aku senyum-senyum sendiri pas lihat HP.",
+            "Makasih ya udah selalu sabar ngadepin sifat random dan manjanya aku setiap hari.",
+            "Kalau disuruh pilih antara napas atau sayang kamu, aku pilih napas terakhirku sambil bilang aku sayang kamu.",
+            "Kamu itu ibarat makanan favorit pas hujan: selalu menghangatkan hati dan bikin nagih terus.",
+            "Hal favoritku setiap hari adalah mendengarkan cerita kamu sampai selesai.",
+            "Jangan pernah merasa sendirian ya, ada aku di sini yang selalu siap mendukungmu.",
+            "Bintang bersinar di langit, kalau kamu bersinar terus di pikiranku.",
+            "Bahkan pas kamu lagi ngambek atau cemberut, di mataku kamu tetap kelihatan lucu.",
+            "Cinta aku ke kamu itu seperti lingkaran, gak ada ujungnya dan gak bakal pernah berhenti.",
+            "Makasih udah hadir di hidupku dan bikin hari-hari biasa jadi terasa spesial.",
+            "Kalau bahagia itu ada wujudnya, aku yakin wujudnya persis saat kita ketawa bareng.",
+            "Kamu adalah alasan kenapa aku selalu semangat menjalani hari.",
+            "Pokoknya jangan lupa makan tepat waktu dan jaga kesehatan ya kesayanganku."
+        ];
+        let lastNoteIndex = -1;
+
+        const couponsData = [
+            {
+                id: 'eskrim',
+                title: 'Kupon Jajan Es Krim & Makanan Favorit',
+                desc: 'Bebas pilih menu dan porsi sesuka hati, ditraktir tanpa syarat.',
+                tag: 'Kuliner',
+                claimed: false
+            },
+            {
+                id: 'peluk',
+                title: 'Kupon Peluk 10 Menit Nonstop',
+                desc: 'Peluk erat-erat saat bertemu langsung untuk mengisi ulang energi sayang.',
+                tag: 'Manja',
+                claimed: false
+            },
+            {
+                id: 'ngambek',
+                title: 'Kupon Bebas Ngambek & Menang',
+                desc: 'Kartu sakti! Apapun perdebatannya, kamu otomatis dinyatakan benar hari ini.',
+                tag: 'Anti Debat',
+                claimed: false
+            },
+            {
+                id: 'nonton',
+                title: 'Kupon Nonton Film Pilihanmu',
+                desc: 'Kamu yang tentukan filmnya ditambah camilan, aku siap menemani.',
+                tag: 'Movie Date',
+                claimed: false
+            },
+            {
+                id: 'pijat',
+                title: 'Kupon Pijat Pundak & Kepala',
+                desc: 'Layanan pijat santai spesial sambil ditemenin ngobrol santai.',
+                tag: 'Relaksasi',
+                claimed: false
+            },
+            {
+                id: 'begadang',
+                title: 'Kupon Telepon Sampai Ketiduran',
+                desc: 'Ditemenin teleponan malam-malam sambil cerita random sampai kamu pulas.',
+                tag: 'Night Talk',
+                claimed: false
+            }
+        ];
+
+        const moodPrescriptions = {
+            kangen: {
+                tag: "Diagnosis: Kangen Berat",
+                resep: "Dosis 3x sehari melihat foto kita berdua, ditambah 1x sesi video call atau voice note malam ini sebelum tidur.",
+                action: "Kirim pesan sekarang: 'Aku kangen banget, yuk teleponan!'"
+            },
+            lapar: {
+                tag: "Diagnosis: Perut Butuh Asupan",
+                resep: "Dilarang keras telat makan! Segera konsumsi makanan favoritmu ditambah minuman manis.",
+                action: "Klaim kupon jajan di atas lalu kirim screenshot ke WhatsApp."
+            },
+            peluk: {
+                tag: "Diagnosis: Butuh Pelukan Hangat",
+                resep: "Untuk sementara peluk guling dulu, nanti saat kita ketemu aku hutang pelukan erat.",
+                action: "Kirim stiker peluk ke chat aku sekarang."
+            },
+            badmood: {
+                tag: "Diagnosis: Mood Kurang Baik",
+                resep: "Tarik napas dalam-dalam, minum air putih. Apapun yang bikin kesal hari ini, aku ada di pihakmu.",
+                action: "Ceritakan semua keluh kesahmu ke aku, aku siap mendengarkan."
+            },
+            capek: {
+                tag: "Diagnosis: Kelelahan Beraktivitas",
+                resep: "Terima kasih sudah berjuang keras hari ini. Sekarang rebahan dan istirahat yang cukup ya.",
+                action: "Klaim kupon pijat atau minta aku temani istirahat."
+            },
+            senang: {
+                tag: "Diagnosis: Full Senyum Bahagia",
+                resep: "Pertahankan senyum manis itu! Kalau kamu bahagia, duniaku ikut cerah seharian.",
+                action: "Kirim foto senyum terbaikmu ke WhatsApp sekarang."
+            }
+        };
+
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound-icon').textContent = soundEnabled ? 'Suara' : 'Mute';
+            if (soundEnabled) {
+                playPopSound();
+                showToast("Suara efek diaktifkan");
+            } else {
+                showToast("Suara efek dimatikan");
+            }
+        }
+
+        function playPopSound() {
+            if (!soundEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(520, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.09);
+                gain.gain.setValueAtTime(0.18, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.09);
+            } catch (e) {}
+        }
+
+        function playBoingSound() {
+            if (!soundEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(300, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(650, ctx.currentTime + 0.14);
+                osc.frequency.exponentialRampToValueAtTime(420, ctx.currentTime + 0.22);
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.22);
+            } catch (e) {}
+        }
+
+        function playSuccessSound() {
+            if (!soundEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    const startTime = ctx.currentTime + idx * 0.08;
+                    osc.frequency.setValueAtTime(freq, startTime);
+                    gain.gain.setValueAtTime(0.16, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.35);
+                });
+            } catch (e) {}
+        }
+
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        const reactionText = document.getElementById('opening-reaction-text');
+
+        function dodgeNoButton(e) {
+            if (e) e.preventDefault();
+            playBoingSound();
+
+            dodgeCount++;
+            document.getElementById('dodge-counter-badge').classList.remove('hidden');
+            document.getElementById('dodge-count').textContent = dodgeCount;
+
+            document.getElementById('mascot-eyes-normal').classList.add('hidden');
+            document.getElementById('mascot-eyes-sad').classList.remove('hidden');
+            document.getElementById('mascot-mouth-happy').classList.add('hidden');
+            document.getElementById('mascot-mouth-sad').classList.remove('hidden');
+
+            yesScale = Math.min(yesScale + 0.14, 1.85);
+            btnYes.style.transform = `scale(${yesScale})`;
+
+            const msg = noReactions[(dodgeCount - 1) % noReactions.length];
+            reactionText.textContent = msg;
+            reactionText.className = "text-sm sm:text-base font-bold text-pastel-pinkDark min-h-[2.5rem] flex items-center justify-center px-2 mb-6 transition-all animate-bounce";
+
+            const btnWidth = btnNo.offsetWidth || 120;
+            const btnHeight = btnNo.offsetHeight || 48;
+            const padding = 24;
+            const maxX = Math.max(padding, window.innerWidth - btnWidth - padding);
+            const maxY = Math.max(padding + 60, window.innerHeight - btnHeight - padding);
+
+            const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
+            const randomY = Math.floor(Math.random() * (maxY - (padding + 60))) + (padding + 60);
+
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+            btnNo.style.zIndex = '45';
+        }
+
+        btnNo.addEventListener('mouseenter', dodgeNoButton);
+        btnNo.addEventListener('touchstart', dodgeNoButton, { passive: false });
+        btnNo.addEventListener('click', dodgeNoButton);
+
+        function acceptLove() {
+            playSuccessSound();
+            triggerHeartConfetti();
+
+            document.getElementById('mascot-eyes-normal').classList.remove('hidden');
+            document.getElementById('mascot-eyes-sad').classList.add('hidden');
+            document.getElementById('mascot-mouth-happy').classList.remove('hidden');
+            document.getElementById('mascot-mouth-sad').classList.add('hidden');
+
+            btnNo.style.display = 'none';
+
+            const openingScreen = document.getElementById('opening-screen');
+            const mainDashboard = document.getElementById('main-dashboard');
+
+            openingScreen.style.opacity = '0';
+            openingScreen.style.transform = 'scale(0.92)';
+
+            setTimeout(() => {
+                openingScreen.classList.add('hidden');
+                mainDashboard.classList.remove('hidden');
+                mainDashboard.classList.add('animate-pop');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 380);
+        }
+
+        let confettiTriggeredOnMax = false;
+
+        function handleLoveSlider(val) {
+            const num = parseInt(val, 10);
+            const badge = document.getElementById('love-meter-badge');
+            const card = document.getElementById('love-meter-card');
+            const message = document.getElementById('love-meter-message');
+
+            if (num <= 100) {
+                confettiTriggeredOnMax = false;
+                card.classList.remove('overload-active', 'bg-pastel-pinkLight/60', 'border-pastel-pink');
+                badge.classList.remove('bg-gradient-to-r', 'from-pink-500', 'to-rose-500', 'scale-110');
+                badge.textContent = `${num}%`;
+
+                if (num < 25) {
+                    message.textContent = `"Kok cuma ${num}%? Geser ke kanan lagi dong."`;
+                } else if (num < 60) {
+                    message.textContent = `"Sayang ${num}%? Lumayan, tapi aku yakin aslinya lebih besar."`;
+                } else if (num < 95) {
+                    message.textContent = `"Waaah ${num}%! Dikit lagi mentok maksimal."`;
+                } else {
+                    message.textContent = `"100% Sayang! Coba geser lebih ke kanan lagi sampai jebol batasnya."`;
+                }
+            } else {
+                badge.textContent = "99999% (Tak Terhingga)";
+                badge.classList.add('bg-gradient-to-r', 'from-pink-500', 'to-rose-500', 'scale-105');
+                card.classList.add('overload-active', 'bg-pastel-pinkLight/60', 'border-pastel-pink');
+                message.innerHTML = `"Kadar sayang kita sudah menembus <b>99.999% Tak Terhingga</b>! Aku sayang banget sama kamu, <span class='underline'>${partnerName}</span>."`;
+
+                if (!confettiTriggeredOnMax) {
+                    confettiTriggeredOnMax = true;
+                    playSuccessSound();
+                    triggerHeartConfetti();
+                }
+            }
+        }
+
+        function updateTotalNotesCounter() {
+            document.getElementById('total-notes-counter').textContent = `Tersedia ${loveNotesList.length} gulungan surat`;
+        }
+
+        function drawLoveNote() {
+            playPopSound();
+
+            const jarSvg = document.getElementById('jar-svg');
+            jarSvg.classList.remove('shake-jar');
+            void jarSvg.offsetWidth;
+            jarSvg.classList.add('shake-jar');
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * loveNotesList.length);
+            } while (randomIndex === lastNoteIndex && loveNotesList.length > 1);
+            lastNoteIndex = randomIndex;
+
+            const noteCard = document.getElementById('note-card-display');
+            const noteBadge = document.getElementById('note-number-badge');
+            const noteText = document.getElementById('note-text-content');
+
+            noteCard.classList.remove('animate-pop');
+            void noteCard.offsetWidth;
+            noteCard.classList.add('animate-pop');
+
+            noteBadge.textContent = `Surat Cinta #${randomIndex + 1}`;
+            noteText.textContent = `"${loveNotesList[randomIndex]}"`;
+        }
+
+        function addCustomLoveNote() {
+            const input = document.getElementById('custom-note-input');
+            const text = input.value.trim();
+
+            if (!text) {
+                showToast("Tulis pesannya terlebih dahulu");
+                return;
+            }
+
+            loveNotesList.push(text);
+            input.value = '';
+            updateTotalNotesCounter();
+            playSuccessSound();
+
+            lastNoteIndex = loveNotesList.length - 1;
+            document.getElementById('note-number-badge').textContent = `Surat Cinta #${loveNotesList.length} (Baru)`;
+            document.getElementById('note-text-content').textContent = `"${text}"`;
+            showToast("Gulungan surat berhasil dimasukkan ke toples");
+        }
+
+        function renderCoupons() {
+            const grid = document.getElementById('coupons-grid');
+            grid.innerHTML = '';
+
+            couponsData.forEach((coupon, index) => {
+                const card = document.createElement('div');
+                card.className = "coupon-card rounded-3xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-pastel-pinkLight/60 text-pastel-pinkDark font-cute font-semibold text-[11px] px-2.5 py-0.5 rounded-full">
+                                ${coupon.tag}
+                            </span>
+                            <span class="text-xs font-bold ${coupon.claimed ? 'text-emerald-600' : 'text-pastel-muted'}">
+                                ${coupon.claimed ? 'Sudah Diklaim' : 'Siap Klaim'}
+                            </span>
+                        </div>
+                        <h4 class="font-cute font-bold text-base sm:text-lg text-pastel-text leading-snug mb-1">
+                            ${coupon.title}
+                        </h4>
+                        <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                            ${coupon.desc}
+                        </p>
+                    </div>
+                    <button onclick="claimCoupon(${index})" class="bouncy w-full ${coupon.claimed ? 'bg-pastel-mint text-emerald-900 border-2 border-emerald-300' : 'bg-pastel-pink hover:bg-pastel-pinkDark text-white kawaii-btn-shadow'} font-cute font-bold text-xs sm:text-sm py-2.5 rounded-xl transition-all">
+                        ${coupon.claimed ? 'Lihat Tiket Lagi' : 'Klaim Kupon Ini'}
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function claimCoupon(index) {
+            playSuccessSound();
+            const coupon = couponsData[index];
+            coupon.claimed = true;
+            currentClaimedCoupon = coupon;
+            renderCoupons();
+
+            document.getElementById('modal-coupon-title').textContent = coupon.title;
+            document.getElementById('modal-coupon-desc').textContent = coupon.desc;
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            document.getElementById('modal-coupon-date').textContent = dateStr;
+            document.getElementById('modal-coupon-code').textContent = `BCN-${Math.floor(1000 + Math.random() * 9000)}`;
+
+            document.getElementById('coupon-modal').classList.remove('hidden');
+            triggerHeartConfetti();
+        }
+
+        function closeCouponModal() {
+            playPopSound();
+            document.getElementById('coupon-modal').classList.add('hidden');
+        }
+
+        function copyCouponText() {
+            if (!currentClaimedCoupon) return;
+            const code = document.getElementById('modal-coupon-code').textContent;
+            const textToCopy = `Halo ${creatorName}! Aku (${partnerName}) resmi mengklaim kupon *${currentClaimedCoupon.title}* [Kode Tiket: ${code}]. Gak boleh nolak ya.`;
+            copyToClipboardHelper(textToCopy, "Teks klaim kupon disalin, tinggal paste ke WhatsApp");
+        }
+
+        function selectMood(moodKey) {
+            playPopSound();
+            const data = moodPrescriptions[moodKey];
+            if (!data) return;
+
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('border-pastel-pink', 'bg-pastel-pinkLight/60', 'ring-2', 'ring-pastel-pink');
+            });
+            const activeBtn = document.getElementById(`mood-btn-${moodKey}`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-pastel-pink', 'bg-pastel-pinkLight/60', 'ring-2', 'ring-pastel-pink');
+            }
+
+            const box = document.getElementById('mood-prescription-box');
+            box.classList.remove('hidden', 'animate-pop');
+            void box.offsetWidth;
+            box.classList.add('animate-pop');
+
+            document.getElementById('mood-diagnosis-tag').textContent = data.tag;
+            document.getElementById('mood-resep-text').textContent = data.resep;
+            document.getElementById('mood-action-text').textContent = data.action;
+        }
+
+        function loadNamesFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const urlPartner = params.get('untuk') || params.get('to');
+            const urlCreator = params.get('dari') || params.get('from');
+
+            if (urlPartner && urlPartner.trim() !== '') {
+                partnerName = urlPartner.trim();
+            }
+            if (urlCreator && urlCreator.trim() !== '') {
+                creatorName = urlCreator.trim();
+            }
+            applyNamesToDOM();
+        }
+
+        function applyNamesToDOM() {
+            document.querySelectorAll('.partner-name-display').forEach(el => {
+                el.textContent = partnerName;
+            });
+            document.querySelectorAll('.creator-name-display').forEach(el => {
+                el.textContent = creatorName;
+            });
+            document.title = `Spesial Buat ${partnerName} Dari ${creatorName}`;
+        }
+
+        function openSettingsModal() {
+            playPopSound();
+            document.getElementById('input-partner-name').value = partnerName;
+            document.getElementById('input-creator-name').value = creatorName;
+            document.getElementById('settings-modal').classList.remove('hidden');
+        }
+
+        function closeSettingsModal() {
+            playPopSound();
+            document.getElementById('settings-modal').classList.add('hidden');
+        }
+
+        function saveCustomNames(copyLinkAfter) {
+            const pInput = document.getElementById('input-partner-name').value.trim();
+            const cInput = document.getElementById('input-creator-name').value.trim();
+
+            partnerName = pInput || "Sayangku";
+            creatorName = cInput || "Aku";
+
+            applyNamesToDOM();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set('untuk', partnerName);
+            url.searchParams.set('dari', creatorName);
+            window.history.replaceState({}, '', url.toString());
+
+            closeSettingsModal();
+            playSuccessSound();
+
+            if (copyLinkAfter) {
+                copyToClipboardHelper(url.toString(), "Link custom berhasil disalin, siap dikirim ke pasangan");
+            } else {
+                showToast(`Nama berhasil diubah untuk ${partnerName}`);
+            }
+        }
+
+        function copyToClipboardHelper(text, successMsg) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg);
+            } catch (err) {
+                showToast("Gagal menyalin otomatis");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        let toastTimeout = null;
+        function showToast(msg) {
+            const toast = document.getElementById('cute-toast');
+            document.getElementById('cute-toast-message').textContent = msg;
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 3200);
+        }
+
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animFrameId = null;
+
+        function resizeConfettiCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeConfettiCanvas);
+        resizeConfettiCanvas();
+
+        function drawHeartShape(ctx, x, y, size, color, rotation) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            ctx.beginPath();
+            const topCurveHeight = size * 0.3;
+            ctx.moveTo(0, topCurveHeight);
+            ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+            ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.5, 0, size);
+            ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.5, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+            ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function triggerHeartConfetti() {
+            const colors = ['#FF5D8F', '#FF85A2', '#FFB5A7', '#FFCAD4', '#FFF1A8', '#95D5B2'];
+            for (let i = 0; i < 65; i++) {
+                particles.push({
+                    x: window.innerWidth / 2 + (Math.random() - 0.5) * 180,
+                    y: window.innerHeight / 2 + (Math.random() - 0.5) * 100,
+                    vx: (Math.random() - 0.5) * 15,
+                    vy: (Math.random() - 1) * 16 - 4,
+                    size: Math.random() * 14 + 10,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.15,
+                    gravity: 0.32,
+                    opacity: 1
+                });
+            }
+            if (!animFrameId) {
+                animateConfettiLoop();
+            }
+        }
+
+        function animateConfettiLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, idx) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.rotation += p.vRot;
+                p.opacity -= 0.008;
+
+                ctx.globalAlpha = Math.max(0, p.opacity);
+                drawHeartShape(ctx, p.x, p.y, p.size, p.color, p.rotation);
+            });
+            ctx.globalAlpha = 1;
+            particles = particles.filter(p => p.opacity > 0 && p.y < canvas.height + 50);
+
+            if (particles.length > 0) {
+                animFrameId = requestAnimationFrame(animateConfettiLoop);
+            } else {
+                animFrameId = null;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function spawnBackgroundHeart() {
+            const container = document.getElementById('bg-hearts-container');
+            const heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.textContent = '❤';
+            heart.style.left = `${Math.random() * 96}vw`;
+            heart.style.fontSize = `${Math.floor(Math.random() * 10 + 12)}px`;
+            heart.style.color = '#FF85A2';
+            const duration = Math.random() * 6 + 9;
+            heart.style.animationDuration = `${duration}s`;
+
+            container.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        window.onload = function () {
+            loadNamesFromURL();
+            renderCoupons();
+            updateTotalNotesCounter();
+
+            for (let i = 0; i < 5; i++) {
+                setTimeout(spawnBackgroundHeart, i * 800);
+            }
+            setInterval(spawnBackgroundHeart, 2500);
+        };
+    </script>
+</body>
+</html>
